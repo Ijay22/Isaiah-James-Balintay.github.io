@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confession Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff3366;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            resize: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 150px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff3366;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e62958;
+        }
+        .hidden {
+            display: none;
+        }
+        .confession-display {
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confession</h1>
+        <textarea id="confessionText" placeholder="Write your confession here..."></textarea>
+        <button onclick="submitConfession()">Submit</button>
+
+        <div class="hidden" id="confessionDisplay">
+            <p>Dear <span id="crushName"></span>,</p>
+            <p>
+                There's something I've been meaning to tell you for a while now. I can't hold it in any longer, so here it goes:
+            </p>
+            <p class="confession-text"></p>
+            <p>
+                You're amazing, and I can't help but feel drawn to you. Your smile brightens my day, and your presence makes everything better.
+            </p>
+            <p>
+                I understand if you don't feel the same way, and that's okay. I just wanted to be honest about my feelings and let you know how special you are to me.
+            </p>
+            <p>
+                Take your time to think about it, and whatever your response, I hope we can still be friends.
+            </p>
+            <p>
+                With lots of affection,
+                <span id="yourName"></span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function submitConfession() {
+            const confessionText = document.getElementById("confessionText").value.trim();
+            const crushName = prompt("Enter your crush's name:");
+            const yourName = prompt("Enter your name:");
+
+            if (confessionText && crushName && yourName) {
+                document.getElementById("crushName").textContent = crushName;
+                document.getElementById("yourName").textContent = yourName;
+                document.querySelector(".confession-text").textContent = confessionText;
+
+                // Hide the text area and button, and display the confession
+                document.getElementById("confessionText").style.display = "none";
+                document.querySelector("button").style.display = "none";
+                document.getElementById("confessionDisplay").classList.remove("hidden");
+                document.getElementById("confessionDisplay").classList.add("confession-display");
+            }
+        }
+    </script>
+</body>
+</html>
